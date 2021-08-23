@@ -28,6 +28,7 @@ fi
 n=0
 while [ $n -lt $num_executions ]
 do
+  echo 'STARTING ITERATION '$n
   index=`printf %04d ${n%*} ${n##*}`
   mpiexec -n $npes ./mima.x > out.${index}.txt
   mppnccombine -r ${index}.atmos_daily.nc atmos_daily.nc.????
