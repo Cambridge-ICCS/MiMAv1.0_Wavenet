@@ -1,4 +1,9 @@
 #!/bin/bash
+#SBATCH -n 32
+#SBATCH --time=3:00:00
+#SBATCH --partition=cees
+#SBATCH -o mimax_run.out
+#SBATCH -e mimax_run.err
 
 path_to_inputfiles=$SCRATCH/mborrus/code/MiMAv0.1/input/INPUT
 
