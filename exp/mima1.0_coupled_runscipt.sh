@@ -5,8 +5,8 @@
 #SBATCH --time=10-00:00:00
 #SBATCH --mem=8GB
 #SBATCH --partition=cees
-#SBATCH -o mima_kcode.out
-#SBATCH -e mima_kcode.err
+#SBATCH -o mima_kcode%j.out
+#SBATCH -e mima_kcode%j.err
 
 # Load modules
 module purge
