@@ -18,14 +18,14 @@ module load openmpi_3/ #3.1.4
 module load netcdf/4.7.1
 module load netcdf-fortran/4.5.2
 
-export "PYTHONPATH=/home/zespinos/:/scratch/zespinos/models/code/MiMA/src/atmos_param"
+export "PYTHONPATH=/home/mborrus/:/scratch/mborrus/models/code/MiMAv0.1_mborrus/src/atmos_param"
 export "HDF5_DISABLE_VERSION_CHECK=1"
 
 # setup run directory
-user=zespinos
+user=mborrus
 run=mima_kcode
-executable=/scratch/${user}/models/code/mima_zac/exp/exec.SE3Mazama/mima.x
-input=/scratch/${user}/models/code/mima_zac/input
+executable=/scratch/${user}/models/code/MiMAv0.1_mborrus/exp/exec.SE3Mazama/mima.x
+input=/scratch/${user}/models/code/MiMAv0.1_mborrus/input
 rundir=/scratch/${user}/models/runs/$run
 #rundir=/data/cees/${user}/ssw_data/$run
 N_PROCS=2
@@ -45,7 +45,7 @@ ulimit -s unlimited
 #mpiexec -n $N_PROCS mima.x
 mpiexec -n $N_PROCS mima.x
 
-CCOMB=/scratch/${user}/models/code/mima_zac/bin/mppnccombine.SE3Mazama
+CCOMB=/scratch/${user}/models/code/MiMAv0.1_mborrus/bin/mppnccombine.SE3Mazama
 $CCOMB -r atmos_daily.nc atmos_daily.nc.*
 $CCOMB -r atmos_avg.nc atmos_avg.nc.*
 
