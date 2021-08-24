@@ -18,15 +18,15 @@ module load openmpi_3/ #3.1.4
 module load netcdf/4.7.1
 module load netcdf-fortran/4.5.2
 
-export "PYTHONPATH=/home/mborrus/:/scratch/mborrus/models/code/MiMAv0.1_mborrus/src/atmos_param"
+export "PYTHONPATH=/home/mborrus/:/scratch/mborrus/models/MiMAv0.1_mborrus/src/atmos_param"
 export "HDF5_DISABLE_VERSION_CHECK=1"
 
 # setup run directory
 user=mborrus
 run=mima_kcode
-executable=/scratch/${user}/models/code/MiMAv0.1_mborrus/exp/exec.SE3Mazama/mima.x
-input=/scratch/${user}/models/code/MiMAv0.1_mborrus/input
-rundir=/scratch/${user}/models/runs/$run
+executable=/scratch/${user}/code/MiMAv0.1_mborrus/exp/exec.SE3Mazama/mima.x
+input=/scratch/${user}/code/MiMAv0.1_mborrus/input
+rundir=/scratch/${user}/runs/$run
 #rundir=/data/cees/${user}/ssw_data/$run
 N_PROCS=2
 
