@@ -7,13 +7,19 @@
 
 # Setup compiler (intel), mpi environment:
 module purge
-module unuse /usr/local/modulefiles
-module load intel/19
-module load openmpi_3/
-module load netcdf/4.7.1
-module load netcdf-fortran/4.5.2
+module load gcc-cees/10.1.0 #needed to load openmpi-cees/4.0.5
+module load openmpi-cees/4.0.5
+module load netcdf/4.4.1.1
+module load netcdf-c-cees/openmpi-4.7.4
+module load netcdf-fortran-cees/openmpi-4.5.3
+
+#module load intel/19 <- Not sure what the Sherlock eq. is
 
 # modules will add to an $INCLUDE variable, but we need to set that for the system...
+  #MPI_PC_DIR adds the config path for openmpi
+MPI_PC_DIR=$(dirname $(dirname $(which mpicc)))/lib/pkgconfig
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:MPI_PC_DIR
+
 export CPATH=${INCLUDE}:${CPATH}
 CC_SPP=${CC}
 export MIMA_CONFIG_FFLAGS="`nf-config --cflags` `pkg-config --cflags ompi-fort` -I${HDF5_INC} -I${HDF5_LIB} -I${NETCDF_FORTRAN_LIB} -I${NETCDF_LIB} "
@@ -43,7 +49,7 @@ echo "Compile on N=${MIMA_NPES} process"
 
 #--------------------------------------------------------------------------------------------------------
 # define variables
-platform="SE3Mazama"
+platform="Sherlock"
 #template="`cd ../bin;pwd`/mkmf.template.$platform"    # path to template for your platform
 template="`pwd`/mkmf.template.$platform"    # path to template for your platform
 mkmf="`cd ../bin;pwd`/mkmf"                           # path to executable mkmf
