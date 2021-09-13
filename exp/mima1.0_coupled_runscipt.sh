@@ -45,7 +45,7 @@ ulimit -s unlimited
 #mpiexec -n $N_PROCS mima.x
 mpiexec -n $N_PROCS mima.x
 
-CCOMB=/scratch/${user}/models/code/MiMAv0.1_mborrus/bin/mppnccombine.SE3Mazama
+CCOMB=/scratch/${user}/code/MiMAv0.1_mborrus/bin/mppnccombine.SE3Mazama
 $CCOMB -r atmos_daily.nc atmos_daily.nc.*
 $CCOMB -r atmos_avg.nc atmos_avg.nc.*
 
