@@ -15,7 +15,7 @@
 # Compilers:
 # (use system definitions -- set by module script, except LD)
 # We probably need to force the MPI compilers...
-LD=gcc-cees
+LD=gcc
 CC=${MPICC}
 FC=${MPIFC}
 CXX=${MPICXX}
