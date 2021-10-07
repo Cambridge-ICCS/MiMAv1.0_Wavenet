@@ -1,7 +1,8 @@
 #!/bin/bash
 #SBATCH -n 24
 #SBATCH --time=6:00:00
-#SBATCH --partition=cees
+#SBATCH --partition=serc
+#SBATCH --constraint=[CLASS:SH3_CBASE | CLASS:SH3_CPERF]
 #SBATCH -o mima_compile.out
 #SBATCH -e mima_compile.err
 
