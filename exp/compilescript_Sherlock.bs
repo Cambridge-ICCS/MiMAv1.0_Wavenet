@@ -7,28 +7,41 @@
 
 # Setup compiler (intel), mpi environment:
 module purge
-module load gcc-cees/10.1.0 #needed to load openmpi-cees/4.0.5
-module load openmpi-cees/4.0.5
-module load netcdf/4.4.1.1
-module load netcdf-c-cees/openmpi-4.7.4
-module load netcdf-fortran-cees/openmpi-4.5.3
-
-#module load intel/19 <- Not sure what the Sherlock eq. is
+module unuse /usr/local/modulefiles
+  #Link to the Spack Environment
+module use /scratch/users/myoder96/spack_dev/zen2/spack/share/spack/lmod_zen2/linux-centos7-x86_64/Core
+  #Load Intel
+module --ignore-cache load intel-yoda/
+  #Load NetCDF
+ml load netcdf/4.4.1.1
+  #Load MPICH
+module load mpich-yoda
+  #Load the C and Fortran versions of NetCDF
+module load netcdf-c-yoda netcdf-fortran-yoda
 
 # modules will add to an $INCLUDE variable, but we need to set that for the system...
-  #MPI_PC_DIR adds the config path for openmpi
-MPI_PC_DIR=$(dirname $(dirname $(which mpicc)))/lib/pkgconfig
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:MPI_PC_DIR
 
+  # Point to where the MPICH pkgconfig is, found via module show <mpich module name>
+MPICC_DIR=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/mpich-3.3.2-jxh2tosfosujfrcitdgzsgocoxjhj5uv
+MPICC_DIR_PKG_CONFIG=$MPICC_DIR/lib/pkgconfig
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:MPICC_DIR_PKG_CONFIG 
 export CPATH=${INCLUDE}:${CPATH}
 CC_SPP=${CC}
-export MIMA_CONFIG_FFLAGS="`nf-config --cflags` `pkg-config --cflags ompi-fort` -I${HDF5_INC} -I${HDF5_LIB} -I${NETCDF_FORTRAN_LIB} -I${NETCDF_LIB} "
-export MIMA_CONFIG_CFLAGS="`nc-config --cflags` `pkg-config --cflags ompi` "
+
+export $NETCDF_FORTRAN_INC=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-fortran-4.5.3-g2meu2dl2yfdhmuxi2cj4dqhzbw35xy6/include
+export $NETCDF_FORTRAN_LIB=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-fortran-4.5.3-g2meu2dl2yfdhmuxi2cj4dqhzbw35xy6/lib 
+export $NETCDF_INC=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-c-4.7.4-nyds46ppwea5dxyfpk37qy5vj62dkpbs/include
+export $NETCDF_LIB=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-c-4.7.4-nyds46ppwea5dxyfpk37qy5vj62dkpbs/lib
+export $HDF5_INC=/share/software/user/open/hdf5/1.10.0p1/include
+export $HDF5_LIB=/share/software/user/open/hdf5/1.10.0p1/lib
+
+export MIMA_CONFIG_FFLAGS="`nf-config --cflags` `pkg-config --cflags mpich` -I${HDF5_INC} -I${HDF5_LIB} -I${NETCDF_FORTRAN_LIB} -I${NETCDF_LIB} "
+export MIMA_CONFIG_CFLAGS="`nc-config --cflags` `pkg-config --cflags mpich` "
 
 # Note: python3-config flag is required for compiling with forpy. It's not currently added to MIMA_CONFIG_LDFLAGS correctly. This compilescript will error
 # with Py_* unknown. I use a hack to get around this.
 # TODO: Ask Mark how to add python3-config without hack
-export MIMA_CONFIG_LDFLAGS=" -shared-intel `python3-config --ldflags --embed` `nf-config --flibs` `pkg-config --libs ompi-fort`"
+export MIMA_CONFIG_LDFLAGS=" -shared-intel `python3-config --ldflags` `nf-config --flibs` `pkg-config --libs mpich`"
 
 echo "*** ** *** ldflags: ${MIMA_CONFIG_LDFLAGS}"
 cwd=`pwd`
@@ -102,7 +115,7 @@ cd ${execdir}
 cppDefs="-Duse_libMPI -Duse_netCDF -DgFortran"
 #
 # NOTE: This runs mkmf in /bin.
-${mkmf} -p mima.x -t $template -c "${cppDefs}" -a $sourcedir $pathnames ${NETCDF_INC} ${NETCDF_LIB} ${NETCDF_FORTRAN_INC} ${NETCDF_FORTRAN_LIB} ${HDF5_INC} ${HDF5_LIB} ${MPI_DIR}/include ${MPI_DIR}/lib $sourcedir/shared/mpp/include $sourcedir/shared/include
+${mkmf} -p mima.x -t $template -c "${cppDefs}" -a $sourcedir $pathnames ${NETCDF_INC} ${NETCDF_LIB} ${NETCDF_FORTRAN_INC} ${NETCDF_FORTRAN_LIB} ${HDF5_INC} ${HDF5_LIB} ${MPICC_DIR}/include ${MPICC_DIR}/lib $sourcedir/shared/mpp/include $sourcedir/shared/include
 
 make clean
 
