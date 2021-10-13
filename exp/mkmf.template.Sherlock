@@ -38,9 +38,7 @@ OPT = -O2
 #OPT = -O1
 #OPT = -O0
 
-FFLAGS = ${DEBUG} ${OPT} -heap-arrays -fpp -stack_temps -safe_cray_ptr -ftz -assume byterecl -i4 -r8 -g ${MIMA_CONFIG_FFLAGS}
-#I've removed the g becasue I'm getting 'make: g: Command not found'
-#FFLAGS = ${DEBUG} ${OPT} -heap-arrays -fpp -stack_temps -safe_cray_ptr -ftz -assume byterecl -i4 -r8 ${MIMA_CONFIG_FFLAGS}
+FFLAGS = ${DEBUG} ${OPT} -heap-arrays -fpp -stack-temps -safe-cray-ptr -ftz -assume byterecl -i4 -r8 -g ${MIMA_CONFIG_FFLAGS}
 
 # -check all
 
