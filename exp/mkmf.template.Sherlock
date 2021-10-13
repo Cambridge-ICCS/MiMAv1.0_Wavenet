@@ -26,8 +26,8 @@ CXX=${MPICXX}
 #MPICXX = mpicc
 #
 #DEBUG=-g -traceback -debug full -O2 
-#I've removed the g becasue I'm getting 'make: g: Command not found'
-DEBUG= -traceback -debug full -O2
+#I've removed the g becasue I'm getting 'make: g: Command not found'; now I'm going to do the same for traceback
+DEBUG=-debug full -O2
 #
 #
 # typical use with mkmf
