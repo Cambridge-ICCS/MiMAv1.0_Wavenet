@@ -17,7 +17,7 @@
 # We probably need to force the MPI compilers...
 LD=ifort
 CC=${MPICC}
-FC=${MPIFC}
+FC=/scratch/users/mborrus/MiMA/MiMAv0.1_mborrus/exp/exec.Sherlock]$ ls /scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/mpich-3.3.2-jxh2tosfosujfrcitdgzsgocoxjhj5uv/bin/mpifort
 CXX=${MPICXX}
 #
 #MPIFC = mpifort
@@ -25,9 +25,9 @@ CXX=${MPICXX}
 #MPICC = mpicc
 #MPICXX = mpicc
 #
-#DEBUG=-g -traceback -debug full -O2 
+DEBUG=-g -traceback -debug full -O2 
 #I've removed the g becasue I'm getting 'make: g: Command not found'; now I'm going to do the same for traceback
-DEBUG=-debug full -O2
+#DEBUG=-debug full -O2
 #
 #
 # typical use with mkmf
@@ -38,9 +38,9 @@ OPT = -O2
 #OPT = -O1
 #OPT = -O0
 
-#FFLAGS = ${DEBUG} ${OPT} -heap-arrays -fpp -stack_temps -safe_cray_ptr -ftz -assume byterecl -i4 -r8 -g ${MIMA_CONFIG_FFLAGS}
+FFLAGS = ${DEBUG} ${OPT} -heap-arrays -fpp -stack_temps -safe_cray_ptr -ftz -assume byterecl -i4 -r8 -g ${MIMA_CONFIG_FFLAGS}
 #I've removed the g becasue I'm getting 'make: g: Command not found'
-FFLAGS = ${DEBUG} ${OPT} -heap-arrays -fpp -stack_temps -safe_cray_ptr -ftz -assume byterecl -i4 -r8 ${MIMA_CONFIG_FFLAGS}
+#FFLAGS = ${DEBUG} ${OPT} -heap-arrays -fpp -stack_temps -safe_cray_ptr -ftz -assume byterecl -i4 -r8 ${MIMA_CONFIG_FFLAGS}
 
 # -check all
 
