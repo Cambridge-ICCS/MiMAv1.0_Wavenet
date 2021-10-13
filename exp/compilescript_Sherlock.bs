@@ -28,12 +28,12 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:MPICC_DIR_PKG_CONFIG
 export CPATH=${INCLUDE}:${CPATH}
 CC_SPP=${CC}
 
-export $NETCDF_FORTRAN_INC=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-fortran-4.5.3-g2meu2dl2yfdhmuxi2cj4dqhzbw35xy6/include
-export $NETCDF_FORTRAN_LIB=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-fortran-4.5.3-g2meu2dl2yfdhmuxi2cj4dqhzbw35xy6/lib 
-export $NETCDF_INC=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-c-4.7.4-nyds46ppwea5dxyfpk37qy5vj62dkpbs/include
-export $NETCDF_LIB=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-c-4.7.4-nyds46ppwea5dxyfpk37qy5vj62dkpbs/lib
-export $HDF5_INC=/share/software/user/open/hdf5/1.10.0p1/include
-export $HDF5_LIB=/share/software/user/open/hdf5/1.10.0p1/lib
+export NETCDF_FORTRAN_INC=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-fortran-4.5.3-g2meu2dl2yfdhmuxi2cj4dqhzbw35xy6/include
+export NETCDF_FORTRAN_LIB=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-fortran-4.5.3-g2meu2dl2yfdhmuxi2cj4dqhzbw35xy6/lib 
+export NETCDF_INC=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-c-4.7.4-nyds46ppwea5dxyfpk37qy5vj62dkpbs/include
+export NETCDF_LIB=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-c-4.7.4-nyds46ppwea5dxyfpk37qy5vj62dkpbs/lib
+export HDF5_INC=/share/software/user/open/hdf5/1.10.0p1/include
+export HDF5_LIB=/share/software/user/open/hdf5/1.10.0p1/lib
 
 export MIMA_CONFIG_FFLAGS="`nf-config --cflags` `pkg-config --cflags mpich` -I${HDF5_INC} -I${HDF5_LIB} -I${NETCDF_FORTRAN_LIB} -I${NETCDF_LIB} "
 export MIMA_CONFIG_CFLAGS="`nc-config --cflags` `pkg-config --cflags mpich` "
