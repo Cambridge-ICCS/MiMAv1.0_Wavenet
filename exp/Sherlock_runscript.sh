@@ -3,7 +3,7 @@
 #SBATCH --nodes=8
 #SBATCH --tasks-per-node=16
 #SBATCH --time=1-00:00:00
-#SBATCH --mem=16GB
+#SBATCH --mem-per-cpu=4G
 #SBATCH --constraint=[CLASS:SH3_CBASE|CLASS:SH3_CPERF]
 #SBATCH --partition=serc
 #SBATCH -o ./jobfiles/mima_test%j.out
@@ -17,7 +17,7 @@ module use /scratch/users/myoder96/spack_dev/zen2/spack/share/spack/lmod_zen2/li
   #Load Intel
 module --ignore-cache load intel-yoda/
   #Load NetCDF
-ml load netcdf/4.4.1.1
+  #ml load netcdf/4.4.1.1
   #Load MPICH
 module load mpich-yoda
   #Load the C and Fortran versions of NetCDF
@@ -54,8 +54,8 @@ cd $rundir
 ulimit -s unlimited
 
 [ ! -d RESTART ] && mkdir RESTART
-#mpiexec -n $N_PROCS mima.x
-mpiexec -n $N_PROCS mima.x
+srun --ntasks $N_PROCS mima.x
+
 
 CCOMB=${base}/code/MiMAv0.1_mborrus/bin/mppnccombine.Sherlock
 $CCOMB -r atmos_daily.nc atmos_daily.nc.*
