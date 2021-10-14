@@ -4,6 +4,7 @@
 #SBATCH --tasks-per-node=16
 #SBATCH --time=1-00:00:00
 #SBATCH --mem=16GB
+#SBATCH --constraint=[CLASS:SH3_CBASE|CLASS:SH3_CPERF]
 #SBATCH --partition=serc
 #SBATCH -o ./jobfiles/mima_test%j.out
 #SBATCH -e ./jobfiles/mima_test%j.err
