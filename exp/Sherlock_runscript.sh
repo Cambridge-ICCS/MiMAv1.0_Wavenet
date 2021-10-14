@@ -1,7 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=mborrus_MiMA
-#SBATCH --nodes=8
-#SBATCH --tasks-per-node=16
+#SBATCH --ntasks=128
 #SBATCH --time=1-00:00:00
 #SBATCH --mem-per-cpu=4G
 #SBATCH --constraint=[CLASS:SH3_CBASE|CLASS:SH3_CPERF]
@@ -34,7 +33,7 @@ export "HDF5_DISABLE_VERSION_CHECK=1"
 
 # setup run directory
 run=mima_test
-N_PROCS=8
+N_PROCS=128
 
 base=/scratch/users/mborrus/MiMA
 user=mborrus
@@ -54,7 +53,7 @@ cd $rundir
 ulimit -s unlimited
 
 [ ! -d RESTART ] && mkdir RESTART
-srun --ntasks $N_PROCS mima.x
+srun --ntasks 128 mima.x
 
 
 CCOMB=${base}/code/MiMAv0.1_mborrus/bin/mppnccombine.Sherlock
