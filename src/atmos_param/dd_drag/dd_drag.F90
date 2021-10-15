@@ -30,6 +30,8 @@ subroutine dd_drag_init ()
     !---------------------------------------------------------------------
     ierror = get_sys_path(paths)
     ierror = paths%append('/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/src/atmos_param')
+    ierror = paths%append('/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/wavenet')
+    ierror = paths%append('/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/wavenet/models/wind_temp')
     ierror = import_py(wavenet, "wavenet")
     if (ierror/=0) then; call err_print; endif
     ierror = print_py(wavenet)
