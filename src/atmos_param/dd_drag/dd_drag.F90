@@ -29,7 +29,7 @@ subroutine dd_drag_init ()
     ! Load Python Module: wavenet.py 
     !---------------------------------------------------------------------
     ierror = get_sys_path(paths)
-    ierror = paths%append('/scratch/zespinos/models/code/MiMA/src/atmos_param')
+    ierror = paths%append('/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/src/atmos_param')
     ierror = import_py(wavenet, "wavenet")
     if (ierror/=0) then; call err_print; endif
     ierror = print_py(wavenet)
