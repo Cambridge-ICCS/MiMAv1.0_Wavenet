@@ -1,8 +1,9 @@
 #!/bin/bash
-#SBATCH -n 24
+#SBATCH --ntasks=64
 #SBATCH --time=3:00:00
-#SBATCH --partition=serc
+#SBATCH --mem-per-cpu=4G
 #SBATCH --constraint=[CLASS:SH3_CBASE|CLASS:SH3_CPERF]
+#SBATCH --partition=serc
 #SBATCH -o mima_compile.out
 #SBATCH -e mima_compile.err
 
