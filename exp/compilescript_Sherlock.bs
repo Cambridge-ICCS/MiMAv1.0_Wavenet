@@ -27,7 +27,7 @@ module load hdf5
 # modules will add to an $INCLUDE variable, but we need to set that for the system...
 
   # Point to where the MPICH pkgconfig is, found via module show <mpich module name>
-MPICC_DIR=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/mpich-3.3.2-jxh2tosfosujfrcitdgzsgocoxjhj5uv
+MPICC_DIR=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/gcc-11.2.0/mpich-3.4.2-7llxtzk6ylxd5bmtku3rh3rdotyx5qpw
 MPICC_DIR_PKG_CONFIG=$MPICC_DIR/lib/pkgconfig
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:MPICC_DIR_PKG_CONFIG 
 export CPATH=${INCLUDE}:${CPATH}
