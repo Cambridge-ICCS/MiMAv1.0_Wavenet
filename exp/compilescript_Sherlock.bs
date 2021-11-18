@@ -10,16 +10,19 @@
 # Setup compiler (intel), mpi environment:
 module purge
 module unuse /usr/local/modulefiles
-  #Link to the Spack Environment
-module use /scratch/users/myoder96/spack_dev/zen2/spack/share/spack/lmod_zen2/linux-centos7-x86_64/Core
-  #Load Intel
-module --ignore-cache load intel-yoda/
-  #Load NetCDF
-ml load netcdf/4.4.1.1
+
+#Link to the Spack Environment
+. /home/groups/s-ees/share/cees/spack_cees/scripts/cees_sw_setup-beta.sh
+
+#Load Intel
+module --ignore-cache load intel-cees-beta/2021.4.0
+
   #Load MPICH
-module load mpich-yoda
+module load mpich-cees-beta
+
   #Load the C and Fortran versions of NetCDF
-module load netcdf-c-yoda netcdf-fortran-yoda
+module load netcdf-c-cees-beta netcdf-fortran-cees-beta
+module load hdf5
 
 # modules will add to an $INCLUDE variable, but we need to set that for the system...
 
@@ -30,10 +33,10 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:MPICC_DIR_PKG_CONFIG
 export CPATH=${INCLUDE}:${CPATH}
 CC_SPP=${CC}
 
-export NETCDF_FORTRAN_INC=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-fortran-4.5.3-g2meu2dl2yfdhmuxi2cj4dqhzbw35xy6/include
-export NETCDF_FORTRAN_LIB=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-fortran-4.5.3-g2meu2dl2yfdhmuxi2cj4dqhzbw35xy6/lib 
-export NETCDF_INC=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-c-4.7.4-nyds46ppwea5dxyfpk37qy5vj62dkpbs/include
-export NETCDF_LIB=/scratch/users/myoder96/spack_dev/zen2/spack/opt/spack/linux-centos7-zen2/intel-2021.2.0/netcdf-c-4.7.4-nyds46ppwea5dxyfpk37qy5vj62dkpbs/lib
+export NETCDF_FORTRAN_INC=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/netcdf-fortran-4.5.3-w74azedyhe2vwscvsdthizjk6cgl474v/include
+export NETCDF_FORTRAN_LIB=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/netcdf-fortran-4.5.3-w74azedyhe2vwscvsdthizjk6cgl474v/lib
+export NETCDF_INC=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/netcdf-c-4.7.4-vqdgxxtugb6vr26lpgaje2ubktlklhop/include
+export NETCDF_LIB=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/netcdf-c-4.7.4-vqdgxxtugb6vr26lpgaje2ubktlklhop/lib
 export HDF5_INC=/share/software/user/open/hdf5/1.10.0p1/include
 export HDF5_LIB=/share/software/user/open/hdf5/1.10.0p1/lib
 
