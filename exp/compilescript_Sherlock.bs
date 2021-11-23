@@ -27,18 +27,18 @@ module load hdf5-cees-beta
 # modules will add to an $INCLUDE variable, but we need to set that for the system...
 
   # Point to where the MPICH pkgconfig is, found via module show <mpich module name>
-MPICC_DIR=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/mpich-3.4.2-wt6kyyxrlz2foqv3mcsogam2f2zefy2q
+MPICC_DIR=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-zen2/intel-2021.4.0/mpich-3.4.2-bq6mpcfiujv2lkq7dtt2bzbejvglysiu
 MPICC_DIR_PKG_CONFIG=$MPICC_DIR/lib/pkgconfig
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:MPICC_DIR_PKG_CONFIG 
 export CPATH=${INCLUDE}:${CPATH}
 CC_SPP=${CC}
 
-export NETCDF_FORTRAN_INC=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/netcdf-fortran-4.5.3-w74azedyhe2vwscvsdthizjk6cgl474v/include
-export NETCDF_FORTRAN_LIB=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/netcdf-fortran-4.5.3-w74azedyhe2vwscvsdthizjk6cgl474v/lib
-export NETCDF_INC=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/netcdf-c-4.7.4-vqdgxxtugb6vr26lpgaje2ubktlklhop/include
-export NETCDF_LIB=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/netcdf-c-4.7.4-vqdgxxtugb6vr26lpgaje2ubktlklhop/lib
-export HDF5_INC=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/hdf5-1.10.7-g7zevlgh6sxxuqvojbcqtefnshh6yllc/include
-export HDF5_LIB=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-skylake_avx512/intel-2021.4.0/hdf5-1.10.7-g7zevlgh6sxxuqvojbcqtefnshh6yllc/lib
+export NETCDF_FORTRAN_INC=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-zen2/intel-2021.4.0/netcdf-fortran-4.5.3-yeufglyxxhffrzdfwvumi6wzvspa2qph/include
+export NETCDF_FORTRAN_LIB=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-zen2/intel-2021.4.0/netcdf-fortran-4.5.3-yeufglyxxhffrzdfwvumi6wzvspa2qph/lib
+export NETCDF_INC=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-zen2/intel-2021.4.0/netcdf-c-4.7.4-soivf6s6cbpkn5faaxq7shvomz6vnpp5/include
+export NETCDF_LIB=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-zen2/intel-2021.4.0/netcdf-c-4.7.4-soivf6s6cbpkn5faaxq7shvomz6vnpp5/lib
+export HDF5_INC=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-zen2/intel-2021.4.0/hdf5-1.10.7-wtwsbe7dqdc6coehdom6hlufplcudfdf/include
+export HDF5_LIB=/home/groups/s-ees/share/cees/spack_cees/spack/opt/spack/linux-centos7-zen2/intel-2021.4.0/hdf5-1.10.7-wtwsbe7dqdc6coehdom6hlufplcudfdf/lib
 
 export MIMA_CONFIG_FFLAGS="`nf-config --cflags` `pkg-config --cflags mpich` -I${HDF5_INC} -I${HDF5_LIB} -I${NETCDF_FORTRAN_LIB} -I${NETCDF_LIB} "
 export MIMA_CONFIG_CFLAGS="`nc-config --cflags` `pkg-config --cflags mpich` "
