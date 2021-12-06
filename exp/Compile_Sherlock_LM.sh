@@ -85,7 +85,7 @@ MIMA_ROOT_PATH=`cd ..;pwd`
 #--------------------------------------------------------------------------------------------------------
 # define variables
 platform="Sherlock"
-template="mkmf.template.$platform"    # path to template for your platform
+template="`pwd`/mkmf.template.$platform"
 mkmf="${MIMA_ROOT_PATH}/bin/mkmf"                           # path to executable mkmf
 sourcedir="${MIMA_ROOT_PATH}/src"                           # path to directory containing model source code
 mppnccombine="${MIMA_ROOT_PATH}/bin/mppnccombine.$platform" # path to executable mppnccombine
