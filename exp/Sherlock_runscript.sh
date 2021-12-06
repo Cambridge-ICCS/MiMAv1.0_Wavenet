@@ -10,17 +10,20 @@
 
 # Load modules
 module purge
-module unuse /usr/local/modulefiles
-  #Link to the Spack Environment
-module use /scratch/users/myoder96/spack_dev/zen2/spack/share/spack/lmod_zen2/linux-centos7-x86_64/Core
-  #Load Intel
-module --ignore-cache load intel-yoda/
-  #Load NetCDF
-  #ml load netcdf/4.4.1.1
-  #Load MPICH
-module load mpich-yoda
-  #Load the C and Fortran versions of NetCDF
-module load netcdf-c-yoda netcdf-fortran-yoda
+. /home/groups/s-ees/share/cees/spack_cees/scripts/cees_sw_setup-beta.sh
+
+CEES_MODULE_SUFFIX="cees-beta"
+COMP="intel"
+MPI="mpich"
+
+# Load intel 
+module load devel gcc/10.
+module load intel-${CEES_MODULE_SUFFIX}
+module load mpich-${CEES_MODULE_SUFFIX}/
+module load netcdf-c-${CEES_MODULE_SUFFIX}/
+module load netcdf-fortran-${CEES_MODULE_SUFFIX}/
+
+module list
 
 #overkill to make sure everything is seen...
 export "PYTHONPATH=$PYTHONPATH:/home/mborrus/"
