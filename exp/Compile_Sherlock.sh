@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH -n 24
 #SBATCH --job-name=mima-compile
-#SBATCH --output=mima_compile_lm_%j.out
-#SBATCH --error=mima_compile_lm_%j.err
+#SBATCH --output=mima_compile_%j.out
+#SBATCH --error=mima_compile_%j.err
 #SBATCH --constraint=CPU_GEN:RME
 
 # Compile script for MiMA, edited to work on SH03 Sherlock on Laura's account
