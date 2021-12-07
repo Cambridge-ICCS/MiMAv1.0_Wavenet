@@ -25,11 +25,12 @@ module load netcdf-fortran-${CEES_MODULE_SUFFIX}/
 
 module list
 
+conda activate wavenet_env
+
 #overkill to make sure everything is seen...
 export "PYTHONPATH=$PYTHONPATH:/home/mborrus/"
 export "PYTHONPATH=$PYTHONPATH:/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/src/atmos_param/dd_drag/"
 export "PYTHONPATH=$PYTHONPATH:/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/src/atmos_param/"
-export "PYTHONPATH=$PYTHONPATH:/home/users/mborrus/.pyenv/versions/3.6-dev/lib/python3.6/site-packages/"
 export "PYTHONPATH=$PYTHONPATH:/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/wavenet/"
 export "PYTHONPATH=$PYTHONPATH:/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/wavenet/models/"
 export "HDF5_DISABLE_VERSION_CHECK=1"
