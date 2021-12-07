@@ -1,8 +1,8 @@
 #!/bin/bash
 #SBATCH --job-name=mborrus_MiMA
 #SBATCH --ntasks=32
-#SBATCH --time=1-00:00:00
-#SBATCH --mem-per-cpu=4G
+#SBATCH --time=03:00:00
+#SBATCH --mem-per-cpu=16G
 #SBATCH --constraint=[CLASS:SH3_CBASE|CLASS:SH3_CPERF]
 #SBATCH --partition=serc
 #SBATCH -o ./jobfiles/mima_test%j.out
@@ -36,7 +36,7 @@ export "PYTHONPATH=$PYTHONPATH:/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus
 export "HDF5_DISABLE_VERSION_CHECK=1"
 
 # setup run directory
-run=mima_test
+run=mima_test_dd
 N_PROCS=32
 
 base=/scratch/users/mborrus/MiMA
