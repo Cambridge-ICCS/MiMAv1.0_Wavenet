@@ -36,7 +36,7 @@ export "PYTHONPATH=$PYTHONPATH:/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus
 export "HDF5_DISABLE_VERSION_CHECK=1"
 
 # setup run directory
-run=mima_test_dd
+run=namelist
 N_PROCS=32
 
 base=/scratch/users/mborrus/MiMA
@@ -57,7 +57,7 @@ cd $rundir
 ulimit -s unlimited
 
 [ ! -d RESTART ] && mkdir RESTART
-srun --ntasks 32 mima.x
+srun --ntasks 32 --mem-per-cpu 8G mima.x
 
 
 CCOMB=${base}/code/MiMAv0.1_mborrus/bin/mppnccombine.Sherlock
