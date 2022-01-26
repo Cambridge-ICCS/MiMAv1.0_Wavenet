@@ -1,3 +1,5 @@
+This is version 1.0 of MiMA. Version 2.0 is now available. This repo is used to run WaveNet. 
+
 # Model of an idealized Moist Atmosphere (MiMA) [![DOI](https://zenodo.org/badge/36012278.svg)](https://zenodo.org/badge/latestdoi/36012278)
 MiMA is an intermediate-complexity General Circulation Model with interactive water vapor and full radiation. It is published in
 
