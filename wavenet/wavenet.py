@@ -4,9 +4,8 @@ import time
 import traceback
 from typing import Any, Dict, Union
 
-import numpy as np
 import tensorflow as tf
-
+import numpy as np
 """
 Choose input features from union of:
 ------------------------------------
