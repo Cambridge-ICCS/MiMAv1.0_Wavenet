@@ -1,7 +1,7 @@
 "MiMA"
 0001 1 1 0 0 0
 #output files
-"atmos_daily",    24, "hours", 1, "days", "time",
+"atmos_daily",    6, "hours", 1, "days", "time",
 "atmos_avg",      -1, "hours", 1, "days", "time",
 #diagnostic field entries. 
 # quantities needed for plevel interpolation,
@@ -13,10 +13,15 @@
  "cg_drag",         "gwfv_cgwd",  "gwfv_cgwd",      "atmos_daily",    "all", .false., "none", 2.
 # "damping",         "udt_dd_gwd", "udt_dd_gwd",     "atmos_daily",    "all", .false., "none", 2,
 # "damping",         "vdt_dd_gwd", "vdt_dd_gwd",     "atmos_daily",    "all", .false., "none", 2,
+ "dynamics",        "omega",      "omega",          "atmos_daily",    "all", .false., "none", 2,
+ "dynamics",        "height",     "hght",           "atmos_daily",    "all", .false., "none", 2,
+ "dynamics",        "slp",        "slp",            "atmos_daily",    "all", .false., "none", 2,
  "dynamics",        "ucomp",      "ucomp",          "atmos_daily",    "all", .false., "none", 2,
  "dynamics",        "vcomp",      "vcomp",          "atmos_daily",    "all", .false., "none", 2,
  "dynamics",        "temp",       "temp",           "atmos_daily",    "all", .false., "none", 2,
- "dynamics",        "sphum",      "sphum",          "atmos_daily",    "all", .false.,  "none", 2,
+ "dynamics",        "sphum",      "sphum",          "atmos_daily",    "all", .false., "none", 2,
+ "dynamics",        "pres_full",  "level",          "atmos_daily",    "all", .false., "none", 2, 
+
  "dynamics",        "ucomp",      "ucomp",          "atmos_avg",      "all", .true.,  "none", 2,
  "dynamics",        "vcomp",      "vcomp",          "atmos_avg",      "all", .true.,  "none", 2,
  "dynamics",        "temp",       "temp",           "atmos_avg",      "all", .true.,  "none", 2,
