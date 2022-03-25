@@ -12,17 +12,52 @@ Get the latest version from [GitHub](https://github.com/mjucker/MiMA/releases/la
 
 ## Compiling
 
-* Dependencies
+### Dependencies
   * The code in its present form will only compile with Intel `ifort` and `icc` compilers. This description will assume `ifort` and `icc` are available.
   * MiMA reads and writes to `netCDF`, so `netCDF` needs to be installed on the system.
   * Being parallel, `MPI` needs to be there too.
-  * The flags need to be adjusted in the `bin/mkmf.template.$PLATFORM` file of choice. Typically, `$PLATFORM` will be slightly different on each machine, as libraries may not be found at the same location.
+  * The build system now uses [CMake](https://cmake.org/).
+  * MiMA currently depends on Python for wavenet.
 
-* Compilation flags: The relevant flags are defined in `bin/mkmf.template.$PLATFORM`, and might or might not use environment variables. For instance, `netCDF` libraries or debug flags could be read from environment variables for more dynamic compilation. The first thing to do is to create an appropriate `mkmf.template.something`, which contains the relevant flags. Look at some of the template files that are already there to get an idea how to set the flags.
+CMake should be able to find Python, MPI and NetCDF on your system,
+particularly if your administrator has installed them with CMake in mind.
 
-* Compile script: A compilescript is provided in `exp/compilescript.csh`. Make sure to set the first variable, `platform`, to whatever name you gave the mkmf template in the previous step. In our example, set it to `something`. The output executable will be in `exp/exec.$PLATFORM/mima.x`
+To build, do something like this from the MiMA top-level directory:
+```
+mkdir build # where the code will be build.  You may call it whatever you like, and have many such directories.
+cd build
+cmake -DCMAKE_BUILD_TYPE:STRING=Debug .. # or -DCMAKE_BUILD_TYPE:STRING=Release for the optimised build
+```
 
-* Adding files: If you work on your own version of MiMA, make sure every extension is in a new file, so as to not disturb the main branch and any other fork that might exist. When adding a source file, add the path to the file in `exp/path_names`, and it will be compiled the next time you run `./compilescript.csh`.
+CMake will search for MiMA's dependencies.  If it can't find your NetCDF
+library you may set the environment variable `NETCDF_DIR` to the directory
+containing its `bin`, `lib`, and `include` directories and re-run the `cmake`
+command.  If it is struggling to find the `ifort` compiler or the MPI libraries
+make sure you've done whatever is needed to get `ifort` and `mpif90` into your
+path (e.g. `module load intel` or `module load impi`).
+
+Once CMake has finished with `-- Configuring done; -- Generating done` you are
+ready to run `make`.  If you usually run `make` in a batch job then all your
+script needs to do is `cd` to the build directory you created above and run
+`make` or `make -j N` where N is the number of processors you want to use to
+build MiMA.  If you are building directly the procedure is the same: `cd`
+to the build directory and run `make` or `make -j N`.
+
+
+### Developing MiMA 
+If you are developing MiMA then once you have made your changes you only
+need to run `make` (or `make -j N`) in the build directory.  CMake will
+build only what has changed.
+
+To add files, place them in the relevant directory and add the source file
+in the appropriate `CMakeLists.txt` file.  E.g. if you have added a file in
+`src/atmos_spectral/driver/solo/` then you'd add it to the `CMakeLists.txt`
+file in `src/atmos_spectral/`.  Running `make` in the build directory
+should pick up this change but if it doesn't you can repeat your
+`cmake ..` invocation.
+
+If the build becomes hopelessly confused you can always entirely delete the
+build directory and re-create it as above.
 
 
 ## Test run
