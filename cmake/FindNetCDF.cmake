@@ -30,11 +30,18 @@ if (NETCDF_INCLUDES AND NETCDF_LIBRARIES)
   set (NETCDF_FIND_QUIETLY TRUE)
 endif (NETCDF_INCLUDES AND NETCDF_LIBRARIES)
 
-find_path (NETCDF_INCLUDES netcdf.h netcdf.inc
-  HINTS NETCDF_DIR ENV NETCDF_DIR)
+#set(CMAKE_FIND_DEBUG_MODE TRUE)
+find_path (NETCDF_INCLUDES netcdf.h netcdf.mod netcdf.inc
+  HINTS NETCDF_DIR ENV NETCDF_DIR ENV CPATH ENV FPATH)
+#set(CMAKE_FIND_DEBUG_MODE FALSE)
+message (STATUS "so far NETCDF_INCLUDES: ${NETCDF_INCLUDES}")
 
-find_library (NETCDF_LIBRARIES_C       NAMES netcdf netcdff)
+
+find_library (NETCDF_LIBRARIES_C       NAMES netcdf netcdff
+    HINTS ENV LD_LIBRARY_PATH LIBRARY_PATH)
 mark_as_advanced(NETCDF_LIBRARIES_C)
+message (STATUS "so far NETCDF_LIBRARIES_C: ${NETCDF_LIBRARIES_C}")
+
 
 set (NetCDF_has_interfaces "YES") # will be set to NO if we're missing any interfaces
 set (NetCDF_libs "${NETCDF_LIBRARIES_C}")

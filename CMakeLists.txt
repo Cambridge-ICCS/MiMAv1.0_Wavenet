@@ -6,6 +6,11 @@ cmake_policy (SET CMP0076 NEW)
 set ( CMAKE_Fortran_COMPILER "ifort" )
 set ( CMAKE_C_COMPILER "icc" )
 project(MiMA Fortran C)
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug CACHE STRING "" FORCE)
+endif()
+
 add_executable ( mima.x )
 target_include_directories( mima.x PUBLIC src/shared/include src/shared/mpp/include )
 add_library( mima_c ) # The C parts of MiMA, so we can apply different options for them.
@@ -14,8 +19,16 @@ target_compile_definitions( mima.x PRIVATE use_libMPI use_netCDF gFortran ) # gF
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-set (NETCDF_F90 "YES")
-find_package (NetCDF REQUIRED)
+find_package(PkgConfig)
+pkg_search_module(NETCDF_FORTRAN netcdf-fortran)
+if (NETCDF_FORTRAN_FOUND)
+    set(NETCDF_LIBRARIES "${NETCDF_FORTRAN_LDFLAGS}")
+    set(NETCDF_INCLUDES "${NETCDF_FORTRAN_INCLUDE_DIRS}")
+#else()
+#    set(NETCDF_F90 "YES")
+#    find_package(NetCDF REQUIRED)
+endif()
+
 target_link_libraries( mima.x PRIVATE mima_c ${NETCDF_LIBRARIES} )
 target_include_directories( mima.x PRIVATE ${NETCDF_INCLUDES} )
 
