@@ -4,9 +4,8 @@ import time
 import traceback
 from typing import Any, Dict, Union
 
-import numpy as np
 import tensorflow as tf
-
+import numpy as np
 """
 Choose input features from union of:
 ------------------------------------
@@ -15,7 +14,7 @@ Choose input features from union of:
 """
 features_gwfu = ["uuu", "temp"]
 features_gwfv = ["vvv", "temp"]
-model_path = '/home/zespinos/models/wind_temp'# Local Testing: './models/wind_temp/'
+model_path = '/scratch/users/mborrus/MiMA/code/MiMAv0.1_mborrus/wavenet/models/wind_temp'# Local Testing: './models/wind_temp/'
 
 #features_gwfu = ["temp", "uuu", "vvv", "lat", "lon"]
 #features_gwfv = ["temp", "uuu", "vvv", "lat", "lon"]
