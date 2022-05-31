@@ -56,6 +56,19 @@ target_link_libraries( mima.x PRIVATE OpenMP::OpenMP_Fortran )
 add_subdirectory( src/coupler )
 add_subdirectory( src/atmos_coupled )
 add_subdirectory( src/atmos_param )
+set_source_files_properties (
+# The following files do nothing but assign very large arrays.
+# For some reason when compiling with ifort and optimisation
+# the compilation will take a very long time (10s of minutes).
+# Since the code doesn't actually *do* anything there's no
+# need to waste time having the compiler apply probably
+# meaningless optimisation.  So we disable optimisation for these
+# files.
+src/atmos_param/rrtm_radiation/rrtmg_sw/gcm_model/src/rrtmg_sw_k_g.f90
+src/atmos_param/rrtm_radiation/rrtmg_lw/gcm_model/src/rrtmg_lw_k_g.f90
+PROPERTIES
+COMPILE_FLAGS -O0
+)
 add_subdirectory( src/atmos_shared )
 add_subdirectory( src/atmos_spectral )
 add_subdirectory( src/ice_param )
