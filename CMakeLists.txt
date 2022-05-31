@@ -21,6 +21,10 @@ add_executable ( mppnccombine postprocessing/mppnccombine.c )
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/bin" CACHE PATH "..." FORCE)
+endif()
+
 find_package(PkgConfig)
 pkg_search_module(NETCDF_FORTRAN netcdf-fortran)
 if (NETCDF_FORTRAN_FOUND)
